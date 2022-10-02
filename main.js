@@ -19,9 +19,8 @@ function DatosTarea (){
     let mail = document.getElementById("mail").value
 
     let OBJETO_TAREA = new  tarea(nombre,sector,mensaje,mail)
-    if (typeof parseInt(OBJETO_TAREA.sector)==NaN){alert("Edad incorrecta")
-    return null;}
-    return OBJETO_TAREA
+  
+  return OBJETO_TAREA
     
    
 }
@@ -30,10 +29,14 @@ document.getElementById("formulario").onsubmit = (event) => validarFormulario(ev
 function validarFormulario(event) {
     event.preventDefault();
     OBJETO_TAREA = DatosTarea()
-    if(OBJETO_TAREA == null){
-        return;
+   /* if(OBJETO_TAREA == null){
+        return;*/
 
-    }
+        //OPERADOR TERNARIA IF
+        {OBJETO_TAREA == null ? "return" : null
+        }
+
+// OPERADOR ++ AUMENTA EN 1 EL ID MIENTRAS SE VAN CARGANDO
     OBJETO_TAREA.id = Tareas.length +1    
 Tareas.push(OBJETO_TAREA) 
 AgregarTareas()
@@ -164,10 +167,14 @@ function AgregarTareas() {
 
           function obtenerTareasStorage() {
             let tareasJSON = localStorage.getItem("Tareas");
-            if (tareasJSON) {
+            
+            ////OPERADOR TERNARIA IF
+            (tareasJSON).Tareas = JSON.parse(tareasJSON) ?  AgregarTareas() : null
+            
+            /*if (tareasJSON) {
               Tareas = JSON.parse(tareasJSON);
               AgregarTareas();
-            }
+            }*/
           }
           
           obtenerTareasStorage()
