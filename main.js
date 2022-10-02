@@ -65,7 +65,7 @@ function AgregarTareas() {
     ListaTareas.innerHTML = "";
     Tareas.forEach((tarea) => {
       let column = document.createElement("div");
-      column.className = "col-md-4 mt-3";
+      column.className = "col-md-2 mt-3";
       column.id = `columna-${tarea.id}`;
       column.innerHTML = `
               <div class="card">
