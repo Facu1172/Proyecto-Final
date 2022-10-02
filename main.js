@@ -53,6 +53,11 @@ actualizarTareasStorage()
     Tareas.splice(indiceBorrar, 1);
     columnaBorrar.remove();
     actualizarTareasStorage();
+    Swal.fire(
+        'Tarea borrada!',
+        'Datos guardados',
+        'error'
+      )
   }
 
 function AgregarTareas() {
@@ -126,10 +131,16 @@ function AgregarTareas() {
             }
             )
              }
-             
+            
             function modificarNombre (id){
             let NombreModificado = prompt("Ingrese el nuevo nombre")
+            Swal.fire(
+                'Nuevo nombre Confirmado!',
+                'Datos guardados',
+                'success'
+              )
             
+
             let indiceTareaABuscar = Tareas.findIndex((tarea => tarea.id == id));
 
             Tareas[indiceTareaABuscar].nombre = NombreModificado
@@ -137,6 +148,11 @@ function AgregarTareas() {
         }
         function modificarSector (id){
             let SectorModificado = prompt("Ingrese el sector")
+            Swal.fire(
+                'Nuevo sector confirmado!',
+                'Datos guardados',
+                'success'
+              )
             
             let indiceTareaABuscar = Tareas.findIndex((tarea => tarea.id == id));
 
@@ -145,6 +161,11 @@ function AgregarTareas() {
         }
         function modificarMensaje (id){
             let MensajeModificado = prompt("Ingrese el nuevo mensaje")
+            Swal.fire(
+                'Nuevo mensaje confirmado!',
+                'Datos guardados',
+                'success'
+              )
             
             let indiceTareaABuscar = Tareas.findIndex((tarea => tarea.id == id));
 
@@ -153,6 +174,11 @@ function AgregarTareas() {
         }
         function modificarMail (id){
             let MailModificado = prompt("Ingrese el nuevo mail")
+            Swal.fire(
+                'Nuevo mail confirmado!',
+                'Datos guardados',
+                'success'
+              )
             
             let indiceTareaABuscar = Tareas.findIndex((tarea => tarea.id == id));
 
