@@ -8,30 +8,32 @@
     
     <title>Document</title>
 </head>
+<div class="row justify-content-md-center" id="tiempo"></div>
 <body>
     <form class="container mt-5 bg-info text-white rounded-lg pb-2" id="formulario">
         <div class="form-group">
           <label>Nombre</label>
-          <input class="form-control" id="nombre">
+          <input class="form-control" id="nombre" required minlength="2">
         </div>
         <div class="form-group">
           <label>Sector</label>
-          <input class="form-control" id="sector">
+          <input class="form-control" id="sector" required minlength="2">
   </div>
         <div class="form-group">
                 <label>Problema</label>
-                <input class="form-control" id="mensaje">
+                <input class="form-control" id="mensaje" required minlength="2">
         </div>
         <div class="form-group">
                     <label>Direccion de Email</label>
-                    <input class="form-control" id="mail">
+                    <input class="form-control" id="mail" required minlength="2">
         </div>
         
         <button type="submit " class="btn btn-primary container text-black">Submit</button>
     
       </form>
 
-      <div class="row justify-content-md-center"" id="ListaTareas"></div>
+      <div class="row justify-content-md-center" id="ListaTareas"></div>
+      
 </body>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

@@ -4,12 +4,11 @@ let Tareas= []
 
 class tarea{
     id
-constructor(nombre,sector,mensaje,mail,tiempo){
+constructor(nombre,sector,mensaje,mail){
     this.nombre=nombre
     this.sector=sector
     this.mensaje=mensaje
     this.mail=mail
-    this.tiempo=tiempo
 }
 }
 function DatosTarea (){
@@ -18,7 +17,7 @@ function DatosTarea (){
     let mensaje = document.getElementById("mensaje").value
     let mail = document.getElementById("mail").value
 
-    let OBJETO_TAREA = new  tarea(nombre,sector,mensaje,mail,tiempo)
+    let OBJETO_TAREA = new  tarea(nombre,sector,mensaje,mail)
   
   return OBJETO_TAREA
     
@@ -30,14 +29,16 @@ function tiempo(){
   .then(response => response.json())
   .then(data => {
   
-    let element = data.datetime
-  
-  return (data.datetime)
-  prompt("la hora de carga es" + element)
+    let element = document.getElementById("tiempo")
+    element.innerHTML=`
+    <p>${data.datetime}</p>
+    `;
   })
   .catch(err=>console.log(err))
+ 
   }
-  let registrartiempo=tiempo()
+tiempo()  
+
 document.getElementById("formulario").onsubmit = (event) => validarFormulario(event);
 function validarFormulario(event) {
     event.preventDefault();
@@ -45,7 +46,7 @@ function validarFormulario(event) {
    /* if(OBJETO_TAREA == null){
         return;*/
 
-        //OPERADOR TERNARIA IF
+//OPERADOR TERNARIA IF
         {OBJETO_TAREA == null ? "return" : null
         }
 
@@ -57,7 +58,7 @@ actualizarTareasStorage()
 
 }
 
-  function eliminarTarea(idTarea) {
+function eliminarTarea(idTarea) {
     let columnaBorrar = document.getElementById(`columna-${idTarea}`);
     let indiceBorrar = Tareas.findIndex(
       (tarea) => Number(tarea.id) === Number(idTarea)
@@ -112,11 +113,7 @@ function AgregarTareas() {
                       </div>
                       </b>
                   </p>
-                  <p class="card-text">Hora de carga:
-                      <b><div id= "-${tiempo()}">
-                       </div>
-                      </b>
-                  </p>
+                 
                   </div>
                   <div class="card-footer">
                       <button class="btn btn-danger" id="botonEliminar-${tarea.id}" >Eliminar</button>
