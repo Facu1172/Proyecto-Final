@@ -1,15 +1,15 @@
 //CARGA DE FICHAS DE PERSONAS
-let Tareas= []
 
+let Tareas= []
 
 class tarea{
     id
-constructor(nombre,sector,mensaje,mail){
+constructor(nombre,sector,mensaje,mail,tiempo){
     this.nombre=nombre
     this.sector=sector
     this.mensaje=mensaje
     this.mail=mail
-    
+    this.tiempo=tiempo
 }
 }
 function DatosTarea (){
@@ -18,13 +18,26 @@ function DatosTarea (){
     let mensaje = document.getElementById("mensaje").value
     let mail = document.getElementById("mail").value
 
-    let OBJETO_TAREA = new  tarea(nombre,sector,mensaje,mail)
+    let OBJETO_TAREA = new  tarea(nombre,sector,mensaje,mail,tiempo)
   
   return OBJETO_TAREA
     
    
 }
-
+function tiempo(){
+  const url = "http://worldtimeapi.org/api/timezone/America/Argentina/Salta"
+  fetch(url)
+  .then(response => response.json())
+  .then(data => {
+  
+    let element = data.datetime
+  
+  return (data.datetime)
+  prompt("la hora de carga es" + element)
+  })
+  .catch(err=>console.log(err))
+  }
+  let registrartiempo=tiempo()
 document.getElementById("formulario").onsubmit = (event) => validarFormulario(event);
 function validarFormulario(event) {
     event.preventDefault();
@@ -60,8 +73,11 @@ actualizarTareasStorage()
       )
   }
 
+  
+
+
 function AgregarTareas() {
-    let ListaTareas = document.getElementById("ListaTareas");
+  let ListaTareas = document.getElementById("ListaTareas");
     ListaTareas.innerHTML = "";
     Tareas.forEach((tarea) => {
       let column = document.createElement("div");
@@ -90,10 +106,16 @@ function AgregarTareas() {
                       ${tarea.mensaje}
                       </div></b>
                   </p>
-                  <p class="card-text">Numeracion:
+                  <p class="card-text">Mail:
                       <b><div id= "mailnuevo-${tarea.id}">
                       ${tarea.mail}
-                      </div></b>
+                      </div>
+                      </b>
+                  </p>
+                  <p class="card-text">Hora de carga:
+                      <b><div id= "-${tiempo()}">
+                       </div>
+                      </b>
                   </p>
                   </div>
                   <div class="card-footer">
@@ -129,8 +151,7 @@ function AgregarTareas() {
               let botonmodificarMail = document.getElementById(`botonmodificarMail-${tarea.id}`);
               botonmodificarMail.onclick = () => modificarMail(tarea.id);
             }
-            )
-             }
+            )}
             
             function modificarNombre (id){
             let NombreModificado = prompt("Ingrese el nuevo nombre")
@@ -205,3 +226,4 @@ function AgregarTareas() {
           
           obtenerTareasStorage()
           actualizarTareasStorage()
+          
